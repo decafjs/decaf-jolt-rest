@@ -87,3 +87,6 @@ function myBadRequestHandler(res, message) {
 app.verb({ users: 'api/v1/users.sjs' }, myBadRequestHandler);
 
 ```
+
+# Notes
+1. You do not have to restart the server (decaf) if you edit the .sjs files.  Changes to these are automatically detected and the latest version used to handle requests.  This means you can edit, reload, edit, reload, repeat... Without restarting the server.
