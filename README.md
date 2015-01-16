@@ -79,7 +79,7 @@ Also note that in the DELETE handler, an Error with message 'Invalid arguments' 
 
 If you prefer to provide your own Bad Request handler, you can pass the function as the second argument to the RestServer constructor:
 
-```javascirpt
+```javascript
 function myBadRequestHandler(res, message) {
 	res.send(400, { message: 'Bad Request' });
 }
