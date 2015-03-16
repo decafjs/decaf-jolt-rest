@@ -77,16 +77,37 @@ Note that not all HTTP request methods are handled or are required to be handled
 
 Also note that in the DELETE handler, an Error with message 'Invalid arguments' is thrown.  This is caught by RestServer and a 400/Bad Request with the Error's message is sent.
 
-If you prefer to provide your own Bad Request handler, you can pass the function as the second argument to the RestServer constructor:
+If you prefer to provide your own Bad Request handler, you can pass the function in the optional options second argument to the RestServer constructor:
 
 ```javascript
 function myBadRequestHandler(res, message) {
 	res.send(400, { message: 'Bad Request' });
 }
 
-app.verb({ users: 'api/v1/users.sjs' }, myBadRequestHandler);
+app.verb('v1', new RestServer({
+    user : 'api/v1/user.sjs' // REST handlers for /v1/user route,
+    comment: 'api/v1/comment.sjs' // REST handlers fro /v1/comment route
+}, {
+    invalid_handler: myBadRequestHandler
+));
+
 
 ```
+
+## Swagger support
+
+This module also supports swagger.  By default it is turned off.
+
+```javascript
+app.verb('v1', new RestServer({
+    user : 'api/v1/user.sjs' // REST handlers for /v1/user route,
+    comment: 'api/v1/comment.sjs' // REST handlers fro /v1/comment route
+}, {
+    swagger: true
+));
+```
+
+If the URI /v1/swagger.json is requested, the json generated from the comments in user.sjs and comment.sjs will be returned.
 
 # Notes
 1. You do not have to restart the server (decaf) if you edit the .sjs files.  Changes to these are automatically detected and the latest version used to handle requests.  This means you can edit, reload, edit, reload, repeat... Without restarting the server.
