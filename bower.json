@@ -5,6 +5,7 @@
   "ignore": [
   ],
   "dependencies": {
+    "marked": "0.3.x",
     "dox": "tj/dox#0.5.x"
   },
   "devDependencies": {
