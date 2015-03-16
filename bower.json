@@ -1,0 +1,12 @@
+{
+  "name": "decaf-jolt-rest",
+  "version": "0.0.1",
+  "main": "index.js",
+  "ignore": [
+  ],
+  "dependencies": {
+    "dox": "tj/dox#0.5.x"
+  },
+  "devDependencies": {
+  }
+}
